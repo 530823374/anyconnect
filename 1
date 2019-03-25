@@ -92,3 +92,32 @@ ocserv 一键安装管理脚本 [vx.x.x]
 账号配置文件：/etc/ocserv/ocpasswd
 
 日志文件：/tmp/ocserv.log
+建议在运行 ocserv前，执行一下这个命令，作用是提高系统的文件符同时打开数量，对于TCP连接过多的时候系统默认的 1024 就会成为速度瓶颈。
+
+点击展开 查看更多
+
+ulimit -n 51200
+这个命令只有临时有效，重启后失效，如果想要永久有效，请执行：
+
+echo "* soft nofile 51200
+* hard nofile 51200" >> /etc/security/limits.conf
+然后最后再执行一下 ulimit -n 51200 即可。
+
+提示wget: unknown host “raw.githubusercontent.com” 之类的错误
+这是无法解析我的域名，多半是DNS的问题，请更换DNS为谷歌DNS(以下两行一起复制 一起执行)。
+
+点击展开 查看更多
+
+echo -e "nameserver 8.8.8.8
+nameserver 8.8.4.4" > /etc/resolv.conf
+提示 wget: command not found 的错误
+这是你的系统精简的太干净了，wget都没有安装，所以需要安装wget。
+
+点击展开 查看更多
+
+# CentOS系统:
+yum install -y wget
+ 
+# Debian/Ubuntu系统:
+apt-get install -y wget
+
